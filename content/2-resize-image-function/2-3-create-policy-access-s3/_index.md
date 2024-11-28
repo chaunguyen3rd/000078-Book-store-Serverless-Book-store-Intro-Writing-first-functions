@@ -6,38 +6,65 @@ chapter : false
 pre : " <b> 2.3 </b> "
 ---
 In this part, we will create a Policy that grants the Lambda function permission to get, write, and delete objects in the S3 bucket.
-1. Navigate to console of created in step 1 Lambda function.
-    - In tab **Configuration**, click **Permissions**
-    - Click on the role being executed by the function
-![CreatePolicy](/images/1/15.png?width=90pc)
+1. At **resize-image** page.
+    - Click tab **Configuration**.
+    - Click **Permissions**.
+    - Click on the role being executed by the function.
+![CreatePolicy](/images/temp/1/16.png?width=90pc)
 
-2. Click **Add permissions**
-    - Select **Attach policies**
-![CreatePolicy](/images/1/16.png?width=90pc)
+2. At **resize-image-role-...** page.
+    - Click **Add permissions**.
+    - Select **Create inline policy**.
+![CreatePolicy](/images/temp/1/17.png?width=90pc)
 
-3. Click **Create policy**
-![CreatePolicy](/images/1/17.png?width=90pc)
+1. At **step 1: Specify permissions** page.
+    - Click **Choose a service** and Enter **S3**.
+    - Select **S3**.
+  ![CreatePolicy](/images/temp/1/18.png?width=90pc)
+    - Enter **GetObject** at Search box.
+    - Choose **GetObject** at **Read** level.
+  ![CreatePolicy](/images/temp/1/19.png?width=90pc)
+    - Clear Search box and enter **DeleteObject**.
+    - Choose **DeleteObject** at **Write** level.
+    - Click **Add ARNs**.
+  ![CreatePolicy](/images/temp/1/20.png?width=90pc)
+    - At **Specify ARNs** modal. 
+      - Enter **book-image-stores-by-myself** at **Resource bucket name**.
+      - Enter **\*** at **Resource object name**.
+      - Click **Add ARNs** button.
+  ![CreatePolicy](/images/temp/1/21.png?width=90pc)
+    - Click **+ Add more permissions**.
+    - Click **Choose a service** and Enter **S3**.
+    - Select **S3**.
+  ![CreatePolicy](/images/temp/1/22.png?width=90pc)
+    - Enter **PutObject**.
+    - Choose **PutObject** at **Write** level.
+    - Click **Add ARNs**.
+  ![CreatePolicy](/images/temp/1/23.png?width=90pc)
+    - At **Specify ARNs** modal. 
+      - Enter **book-image-resize-stores-by-myself** at **Resource bucket name**.
+      - Enter **\*** at **Resource object name**.
+      - Click **Add ARNs** button.
+    - After modal is closed, click **Next**.
+  ![CreatePolicy](/images/temp/1/24.png?width=90pc)
 
-4. Click **Choose a service** and Enter **S3**, then select **S3**
-![CreatePolicy](/images/1/18.png?width=90pc)
-
-6. Click **Action**, expand **Read** in **Access level**
+1. Click **Action**, expand **Read** in **Access level**
     - Check to **GetObject** permission
 ![CreatePolicy](/images/1/19.png?width=90pc)
 
-7. Then, expand **Write**
+1. Then, expand **Write**
     - Check to **DeleteObject** permission
 ![CreatePolicy](/images/1/20.png?width=90pc)
 
-8. In **Resource**, click **Add ARN** to specify resources.
+1. In **Resource**, click **Add ARN** to specify resources.
 ![CreatePolicy](/images/1/21.png?width=90pc)
 
-9. Enter bucket name: **book-image-shop**
+1. Enter bucket name: **book-image-shop**
     - Check to **Any** to allow permissions for all objects in the bucket
     - Click **Add**
 ![CreatePolicy](/images/1/22.png?width=90pc)
 
-10. Click **Add additional permissions**
+1.  Click **Add additional permissions**
 
 ![CreatePolicy](/images/1/23.png?width=90pc)
 
