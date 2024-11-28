@@ -12,21 +12,21 @@
     <title>Create resize image Lambda function :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1732777971" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1732777971" rel="stylesheet">
-    <link href="/css/hybrid.css?1732777971" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1732777971" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1732777971" rel="stylesheet">
-    <link href="/css/auto-complete.css?1732777971" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1732777971" rel="stylesheet">
-    <link href="/css/theme.css?1732777971" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1732777971" rel="stylesheet">
+    <link href="/css/nucleus.css?1732783030" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1732783030" rel="stylesheet">
+    <link href="/css/hybrid.css?1732783030" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1732783030" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1732783030" rel="stylesheet">
+    <link href="/css/auto-complete.css?1732783030" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1732783030" rel="stylesheet">
+    <link href="/css/theme.css?1732783030" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1732783030" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1732777971" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1732783030" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1732777971"></script>
+    <script src="/js/jquery-3.3.1.min.js?1732783030"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1732777971"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1732777971"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1732783030"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1732783030"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1732777971"></script>
+<script type="text/javascript" src="/js/search.js?1732783030"></script>
 
     
   </div>
@@ -549,15 +549,17 @@
 
 	<ol>
 <li>
-<p>Open <a href="https://ap-southeast-2.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/discover">AWS Lambda console</a>, then click <strong>Create function</strong> button
-<img alt="LambdaConsole" src="/images/1/1.png?width=90pc"></p>
+<p>Open <a href="https://ap-southeast-2.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/discover">AWS Lambda console</a>, then click <strong>Create function</strong> button.
+<img alt="LambdaConsole" src="/images/temp/1/1.png?width=90pc"></p>
 </li>
 <li>
-<p>Enter function name, such as: <strong>resize-image</strong></p>
+<p>At <strong>Create function</strong> page.</p>
 <ul>
-<li>Choose <strong>Node.js 16.x</strong> for <strong>Runtime</strong></li>
-<li>Click <strong>Create function</strong> button
-<img alt="CreateFunction" src="/images/1/2.png?width=90pc"></li>
+<li>Choose <strong>Author from scratch</strong>.</li>
+<li>Enter function name, such as <strong>resize-image</strong>.</li>
+<li>Choose <strong>Node.js 20.x</strong> for <strong>Runtime</strong>.</li>
+<li>Leave as default and click <strong>Create function</strong> button.
+<img alt="CreateFunction" src="/images/temp/1/2.png?width=90pc"></li>
 </ul>
 </li>
 <li>
@@ -580,7 +582,7 @@
 					<a href="/2-resize-image-function/2-1-create-lambda-function/_index.files/function.zip" >
 						function.zip
 					</a>
-					(8382 ko)
+					(12099 ko)
 				</li>
 			
 		
@@ -592,41 +594,45 @@
 </p>
 </li>
 <li>
-<p>Click <strong>Upload from</strong> button</p>
+<p>At <strong>resize-image</strong> page.</p>
 <ul>
-<li>Choose <strong>.zip file</strong>
-<img alt="CreateFunction" src="/images/1/3.png?width=90pc"></li>
+<li>Click <strong>Upload from</strong> button.</li>
+<li>Choose <strong>.zip file</strong>.
+<img alt="CreateFunction" src="/images/temp/1/3.png?width=90pc"></li>
 </ul>
 </li>
 <li>
-<p>Click <strong>Upload</strong> button</p>
+<p>At <strong>Upload a .zip file</strong> modal.</p>
 <ul>
-<li>Then select the downloaded source code file</li>
-<li>Click <strong>Save</strong>
-<img alt="CreateFunction" src="/images/1/4.png?width=90pc">
-<img alt="CreateFunction" src="/images/1/5.png?width=90pc"></li>
+<li>Click <strong>Upload</strong> button and select the downloaded source code file.</li>
+<li>Click <strong>Save</strong>.
+<img alt="CreateFunction" src="/images/temp/1/4.png?width=90pc"></li>
 </ul>
 </li>
 <li>
-<p>Next, add environment variables to adjust the width and height of the image</p>
+<p>At <strong>resize-image</strong> page.</p>
 <ul>
 <li>Click <strong>Configuration</strong> tab</li>
 <li>Click <strong>Environment variables</strong> on the left menu</li>
 <li>Click <strong>Edit</strong>
-<img alt="CreateFunction" src="/images/1/6.png?width=90pc"></li>
+<img alt="CreateFunction" src="/images/temp/1/5.png?width=90pc"></li>
 </ul>
 </li>
 <li>
-<p>Click <strong>Add environment variable</strong>, then add the following environment variables:</p>
+<p>At <strong>Edit environment variables</strong> page.</p>
+<ul>
+<li>Click <strong>Add environment variable</strong>, then add the following environment variables:
 <ul>
 <li><strong>WIDTH</strong>: enter the new width of the photo, such as 200px.</li>
 <li><strong>HEIGHT</strong>: enter the new hight of the photo, such as 280px.</li>
-<li><strong>DES_BUCKET</strong>: S3 bucket name to store the changed image, such as: <strong>book-image-resize-stores</strong>.</li>
+<li><strong>DES_BUCKET</strong>: S3 bucket name to store the changed image, such as: <strong>book-image-resize-stores-by-myself</strong>.</li>
+</ul>
+</li>
+<li>Then click <strong>Save</strong>.
+<img alt="CreateFunction" src="/images/temp/1/6.png?width=90pc"></li>
 </ul>
 </li>
 </ol>
-<p>Then, click <strong>Save</strong>
-<img alt="CreateFunction" src="/images/1/7.png?width=90pc"></p>
 <p>So we have completed the step of creating a Lambda function and configuring the environment variables for it. Next step, we will create an S3 bucket to store uploaded and edited images.</p>
 
 
@@ -857,19 +863,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1732777971"></script>
-    <script src="/js/perfect-scrollbar.min.js?1732777971"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1732777971"></script>
-    <script src="/js/jquery.sticky.js?1732777971"></script>
-    <script src="/js/featherlight.min.js?1732777971"></script>
-    <script src="/js/highlight.pack.js?1732777971"></script>
+    <script src="/js/clipboard.min.js?1732783030"></script>
+    <script src="/js/perfect-scrollbar.min.js?1732783030"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1732783030"></script>
+    <script src="/js/jquery.sticky.js?1732783030"></script>
+    <script src="/js/featherlight.min.js?1732783030"></script>
+    <script src="/js/highlight.pack.js?1732783030"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1732777971"></script>
-    <script src="/js/learn.js?1732777971"></script>
-    <script src="/js/hugo-learn.js?1732777971"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1732783030"></script>
+    <script src="/js/learn.js?1732783030"></script>
+    <script src="/js/hugo-learn.js?1732783030"></script>
 
-    <link href="/mermaid/mermaid.css?1732777971" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1732777971"></script>
+    <link href="/mermaid/mermaid.css?1732783030" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1732783030"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
