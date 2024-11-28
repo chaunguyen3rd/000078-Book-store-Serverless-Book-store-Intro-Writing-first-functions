@@ -1,0 +1,92 @@
+[
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Tổng quan Trước khi bắt tay vào viết hàm Lambda đầu tiên chúng ta cùng tìm hiểu qua khái niệm về Serverless, và Lambda nhé.\nServerless Serverless là khái niệm cơ bản để chỉ nhóm các dịch vụ được quản lý hoàn toàn bởi AWS. Khi sử dụng những dịch vụ này thì bạn sẽ không cần quan tâm tới các tác vụ quản trị hạ tầng cơ bản hàng ngày như cập nhật bản vá bảo mật, quản lý danh mục thiết bị, quản lý tài sản\u0026hellip;.\nCó nhiều dịch vụ được quy hoạch vào nhóm Serverless trên AWS ví dụ serverless database như Aurora Serverless, Redshift Serverless, serverless compute như AWS Lambda.\nAWS Lambda Lambda là một dịch vụ serverless compute cho phép bạn chạy ứng dụng mà không cần khởi tạo hoặc quản lý máy chủ. Lambda chạy trên nển tảng hạ tầng có tính khả dụng cao và thực hiện tất cả việc quản lý tài nguyên tính toán, bao gồm bảo trì máy chủ và hệ điều hành, cung cấp dung lượng, tự động mở rộng quy mô và ghi log. Với Lambda, bạn có thể phát triển hầu hết mọi loại ứng dụng hoặc dịch vụ phụ trợ.\nBạn tổ chức ứng dụng của mình thành các Lambda function. Lambda function chỉ chạy khi cần thiết và có khả năng tự động mở rộng quy mô, từ một vài yêu cầu mỗi ngày đến hàng nghìn mỗi giây. Bạn chỉ phải trả cho thời gian tính toán mà bạn sử dụng — AWS sẽ không tính phí khi ứng dụng của bạn không chạy.\nChúng ta sẽ cũng bắt đầu hành trình Serverless Journey của mình với Lambda function đầu tiên thực hiện thay đổi kích thước ảnh sau khi tải ảnh lên S3 bucket, lưu ảnh sau khi sửa vào một S3 bucket mới và xoá ảnh cũ đi.\n"
+},
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Serverless - Lambda tương tác với S3 và DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "Serverless - Lambda tương tác với S3 và DynamoDB Tổng quan Đây là series về Serverless với AWS Cloud. AWS cung cấp các công nghệ để chạy code, quản lý dữ liệu, và tích hợp các ứng dụng mà không cần quản lý máy chủ. Các công nghệ đó phục vụ cho người dùng tạo các ứng dụng theo mô hình Serverless. Các ứng dụng Serverless bắt đầu với AWS Lambda, lưu dữ liệu với DynamoDB, nhận yêu cầu của người dùng với API Gateway, host static web với S3/AWS Amplify Console,\u0026hellip;.\nVí dụ về ứng dụng web sử dụng mô hình Serverless với cloud: Trong bài đầu tiên của series này, chúng ta sẽ tìm hiểu các khái niệm cơ bản về Serverless và thực hành tạo các function với Lambda được trigger từ S3 và ghi dữ liệu vào bảng DynamoDB.\nNội dung Giới thiệu Tạo Lambda thay đổi kích thước ảnh Tạo Lambda ghi dữ liệu vào DynamoDB "
+},
+{
+	"uri": "//localhost:1313/vi/3-write-data-to-dynaomodb/3-1-create-dynamodb-table/",
+	"title": "Tạo bảng trong AWS DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": " Mở bảng điều khiển DynamoDB, sau đó nhấn nút Create table Nhập tên cho bảng: Books\nNhập parition key: id Kéo xuống phần Table settings, chọn Customize settings\nSau đó phần Table class, chọn DynamoDB Standard Kéo xuống phần Read/write capacity setting, chọn On-demand Để mặc định với các tùy chọn phía dưới\nKéo xuống cuối trang, ấn nút Create table\nVậy là bạn đã tạo xong bảng Books\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-resize-image-function/2-1-create-lambda-function/",
+	"title": "Tạo Lambda function chỉnh ảnh",
+	"tags": [],
+	"description": "",
+	"content": " Mở bảng điều khiển AWS Lambda, sau đó chọn Create function Nhập tên function, ví dụ: resize-image\nChọn Node.js 16.x cho mục Runtime Nhấn nút Create function Tải tệp source code máy của bạn Source code\rfunction.zip\r(8382 ko)\rẤn nút Upload from\nChọn .zip file Nhấn nút Upload\nSau đó chọn tệp source code mà bạn đã tải về Nhấn Save Tiếp theo, thêm biến môi trường để chỉnh chiều rộng và cao cho ảnh\nChọn tab Configuration Ấn Environment variables ở bên trái Ấn nút Edit Ấn nút Add environment variable, sau đó thêm các biến môi trường sau:\nWIDTH: nhập chiều rộng mới của ảnh, ví dụ 200px. HEIGHT: nhập cao mới của ảnh, ví dụ 280px. DES_BUCKET: tên của S3 bucket lưu ảnh sau khi thay đổi, chẳng hạn như book-image-resize-stores. Sau đó ấn Save Vậy là chúng ta đã hoàn thành xong bước tạo một Lambda function và cấu hình biến môi trường cho nó. Tiếp theo sẽ tạo S3 bucket để lưu ảnh tải lên và ảnh sau khi qua chỉnh sửa.\n"
+},
+{
+	"uri": "//localhost:1313/vi/3-write-data-to-dynaomodb/3-2-write-data-by-lambda/",
+	"title": "Ghi dữ liệu với Lambda function",
+	"tags": [],
+	"description": "",
+	"content": " Mở bảng điều khiển AWS Lambda, sau đó nhấn nút Create function Nhập tên cho function: book_create\nChọn Python 3.11 cho mục1 Runtime Ấn nút Create function Sao chép đoạn code dưới đây vào tab lambda_function ``` import boto3 import json\nclient = boto3.resource('dynamodb')\rdef lambda_handler(event, context):\rbook_item = event[\u0026quot;body\u0026quot;]\rerror = None\rtry:\rtable = client.Table('Books')\rtable.put_item(Item = book_item)\rexcept Exception as e:\rerror = e\rif error is None:\rresponse = {\r'statusCode': 200,\r'body': 'writing to dynamoDB successfully!',\r'headers': {\r'Content-Type': 'application/json'\r},\r}\relse:\rresponse = {\r'statusCode': 400,\r'body': 'writing to dynamoDB fail!',\r'headers': {\r'Content-Type': 'application/json'\r},\r}\rreturn response\r```\rẤn nút Deploy Tiếp theo, thêm quyền truy cập cho Lambda vào DynamoDB\nẤn sang tab Configure\nChọn mục Permissions phía bên trái\nẤn vào role mà function đang thực hiện Ấn nút Attach permissions\nChọn mục Attach policies Nhập dynamoDB để tìm policy thích hợp.\nTích chọn policy: AmazonDynamoDBFullAccess\nẤn nút Add permision Tạo sự kiện để kiểm tra hoạt động của function\nẤn sang tab Test Nhập tên cho sự kiện, ví dụ: test_1 Nhập đoạn dữ liệu sau vào Event JSON {\r\u0026#34;body\u0026#34;: {\r\u0026#34;id\u0026#34;: \u0026#34;1\u0026#34;,\r\u0026#34;name\u0026#34;: \u0026#34;Java\u0026#34;,\r\u0026#34;author\u0026#34;: \u0026#34;Alex\u0026#34;,\r\u0026#34;category\u0026#34;: \u0026#34;IT\u0026#34;,\r\u0026#34;price\u0026#34;: \u0026#34;10.89\u0026#34;,\r\u0026#34;description\u0026#34;: \u0026#34;This book guide to create Java web basic\u0026#34;,\r\u0026#34;image\u0026#34;: \u0026#34;https://book-image-resize-store.s3.us-east-1.amazonaws.com/Java.jpg\u0026#34;\r}\r} Ấn nút Save Ấn nút Test Điều hướng đến bảng điều khiển DynamoDB Tables\nChọn Books Tables Click Actions sau đó chọn Update settings Click Explore table items Bạn sẽ nhận được tất cả các dữ liệu của bảng. "
+},
+{
+	"uri": "//localhost:1313/vi/2-resize-image-function/2-2-create-s3-bucket/",
+	"title": "Tạo S3 bucket",
+	"tags": [],
+	"description": "",
+	"content": "Phần này, chúng ta sẽ tạo hai S3 bucket:\nBucket book-image-stores: để lưu ảnh lên Bucket book-image-resize-stores: để lưu ảnh sau khi thay đổi kích thước Mở bảng điều khiển Amazon S3, sau đó chọn Create bucket General configuration\nChọn Bucket type: General purpose Nhập tên bucket, book-image-stores Chọn ACLs disabled Bỏ chọn access block: Block all public access Check the box: I acknowledge that the current settings might result in this bucket and the objects within becoming public Ấn nút Create bucket Tương tự để tạo bucket book-image-resize-store, làm lại các bước từ 1 tới 5.\nSau khi tạo xong hai bucket, chúng ta thêm trigger cho lambda function tạo ra trước đó\nẤn vào Add Trigger Nhập S3 và chọn dịch vụ S3 Chọn bucket để triger lambda, book-image-stores\nChọn All object create events cho mục Event type Tích chọn I acknowledge that using\u0026hellip;. như hình Ấn nút Add Xem kết quả sau đi thêm trigger cho Lambda function "
+},
+{
+	"uri": "//localhost:1313/vi/2-resize-image-function/",
+	"title": "Thay đổi kích thước ảnh",
+	"tags": [],
+	"description": "",
+	"content": "Trong phần này chúng ta sẽ tạo 1 Lambda Nodejs function để thay đổi kích thước ảnh sau khi tải ảnh lên S3 bucket, lưu ảnh sau khi sửa vào một S3 bucket mới và xoá ảnh cũ đi.\nNội dung Tạo Lambda function Tạo S3 bucket Cấp quyền truy cập S3 bucket Kiểm tra hoạt động của Lambda "
+},
+{
+	"uri": "//localhost:1313/vi/3-write-data-to-dynaomodb/",
+	"title": "Ghi dữ liệu vào DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "Trong phần này chúng ta sẽ tạo một bảng với DynamoDB, sau đó tạo Lambda function bằng Python để ghi dữ liệu vào bảng đó.\nNội dung Tạo bảng trong AWS DynamoDB Ghi dữ liệu với Lambda function "
+},
+{
+	"uri": "//localhost:1313/vi/2-resize-image-function/2-3-create-policy-access-s3/",
+	"title": "Tạo Policy cho Lambda function",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ tạo Policy cấp quyền cho Lambda function có thể lấy, ghi và xoá object trong S3 bucket.\nĐiều hướng tới bảng điều khiển của Lambda bạn đã tạo.\nTrong tab Configuration, chọn mục Permissions Ấn vào role mà function đang thực hiện Ấn nút Add permissions\nChọn Attach policies Ấn nút Create policy Ấn vào Choose a service và nhập S3, sau đó chọn S3 Ấn vào mục Action, mở rộng Read trong Access level\nTích chọn quyền GetObject Sau đó mở rộng mục Write\nTích chọn quyền DeleteObject Tại mục Resource, ấn vào Add ARN để chỉ định tài nguyên. Nhập tên bucket: book-image-store\nTích vào Any cho phép quyền với mọi object trong bucket Ấn Add Ấn Add additional permissions Lặp lại bước 4 và 5\nSau đó mở rộng mục Write, tích chọn quyền PutObject Ấn vào Add ARN để chỉ định tài nguyên. Làm tương tự bước 8, 9.\nNhập tên bucket là book-image-resize-store Click Next, Nhập tên cho policy, ví dụ: LambdaResizeImageS3Policy\nXem lại các thông tin và ấn nút Create policy Trở lại màn hình thêm policy cho Lambda function, nhập tên policy chúng ta vừa tạo.\nTích chọn policy: LambdaResizeImageS3Policy Ấn nút Attach policies Chúng ta đã hoàn thành cấp quyền đọc, ghi và xoá object trong S3 bucket cho Lambda function. Bước tiếp theo là kiểm tra hoạt động của Lambda fucntion khi tải lên một ảnh.\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-cleanup/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": " Xoá bảng trong DynamoDB Mở bảng điều khiển của DynamoDB Chọn Tables ở menu phía bên trái Chọn bảng Books Ấn Delete Nhập delete và ấn Delete table Xoá S3 bucket Mở bảng điều khiển của S3 Chọn bucket book-image-resize-store Ấn nút Empty Nhập permanently delete và ấn Empty Chọn bucket book-image-resize-store Ấn nút Delete Nhập book-image-resize-store và ấn Delete Chọn bucket book-image-store Ấn nút Delete Nhập book-image-store và ấn Delete Xoá Lambda function Mở bảng điều khiển của AWS Lambda Chọn book_create function Ấn Actions Chọn Delete Nhập delete và ấn Delete Tương tự với resize_image function Nếu bạn tiếp tục với bài số 2 của series thì có thể bỏ qua bước xoá Lambda function.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-resize-image-function/2-4-test-lambda-function/",
+	"title": "Kiểm tra hoạt động",
+	"tags": [],
+	"description": "",
+	"content": " Điều hướng đến S3 bucket: book-image-store Ấn nút Upload Ấn nút Add files Chọn ảnh mà bạn muốn tải lên, sau đó ấn Upload Đợi một lúc để Lambda function chạy, sau đó kiểm tra lại xem bucket còn ảnh không Điều hướng sang bucket - book-image-resize-store\nẤn vào tệp ảnh Ấn vào Object URL để tải ảnh về Nhưng bạn sẽ gặp lỗi access Denied. Để tải được ảnh, bạn cần thêm policy cho bucket để cho phép truy cập public.\nQuay lại bucket, chọn mục Permission\nẤn nút Edit tại mục Bucket policy Sao chép đoạn json dưới đây mục Policy\n{\r\u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;,\r\u0026#34;Statement\u0026#34;: [\r{\r\u0026#34;Sid\u0026#34;: \u0026#34;PublicReadGetObject\u0026#34;,\r\u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;,\r\u0026#34;Principal\u0026#34;: \u0026#34;*\u0026#34;,\r\u0026#34;Action\u0026#34;: \u0026#34;s3:GetObject\u0026#34;,\r\u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::book-image-resize-stores/*\u0026#34;\r}\r]\r} Ấn nút Save changes Sau đó, bạn hãy thực hiện lại 6 và 7 để tải ảnh về máy để so sánh với ảnh mà bạn đã tải lên. Vậy là Lambda resize function đã hoạt động bình thường.\n"
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

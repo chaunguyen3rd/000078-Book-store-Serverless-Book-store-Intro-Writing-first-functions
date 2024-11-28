@@ -1,0 +1,92 @@
+[
+{
+	"uri": "//localhost:1313/",
+	"title": "Book store - Serverless Book store Intro - Writing first functions",
+	"tags": [],
+	"description": "",
+	"content": "Book store - Serverless Book store Intro - Writing first functions Overview This is a series about Serverless. AWS provides technologies for running code, managing data, and integrating applications, all without managing servers. Those technologies serve users to create applications under the Serverless model. Serverless applications start with AWS Lambda, save data with DynamoDB, receive user requests with API Gateway, host static web with S3/AWS Amplify Console, \u0026hellip;.\nExample of a web application using the Serverless model with the cloud:\nIn the first post of this series, we\u0026rsquo;ll learn the basics of Serverless and practice creating functions with Lambda that are triggered from S3 and write data to a DynamoDB table.\nContent Introduce Create Lambda function to resize images Create Lambda function to write data to DynamoDB "
+},
+{
+	"uri": "//localhost:1313/3-write-data-to-dynaomodb/3-1-create-dynamodb-table/",
+	"title": "Create DynamoDB table",
+	"tags": [],
+	"description": "",
+	"content": " Open DynamoDB console, then Click Create table Enter table name: Books\nEnter parition key: id Scroll down to Table settings pattern, select Customize settings\nThen Table class pattern, select DynamoDB Standard Scroll down to Read/write capacity setting pattern, select On-demand Leave at default with the options below\nScroll to the bottom, click Create table. So you have created the Books table\n"
+},
+{
+	"uri": "//localhost:1313/2-resize-image-function/2-1-create-lambda-function/",
+	"title": "Create resize image Lambda function",
+	"tags": [],
+	"description": "",
+	"content": " Open AWS Lambda console, then click Create function button Enter function name, such as: resize-image\nChoose Node.js 16.x for Runtime Click Create function button Download source code file to your device Source code\rfunction.zip\r(8382 ko)\rClick Upload from button\nChoose .zip file Click Upload button\nThen select the downloaded source code file Click Save Next, add environment variables to adjust the width and height of the image\nClick Configuration tab Click Environment variables on the left menu Click Edit Click Add environment variable, then add the following environment variables:\nWIDTH: enter the new width of the photo, such as 200px. HEIGHT: enter the new hight of the photo, such as 280px. DES_BUCKET: S3 bucket name to store the changed image, such as: book-image-resize-stores. Then, click Save So we have completed the step of creating a Lambda function and configuring the environment variables for it. Next step, we will create an S3 bucket to store uploaded and edited images.\n"
+},
+{
+	"uri": "//localhost:1313/1-introduce/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "Overview Before starting to write the first Lambda function, let\u0026rsquo;s learn through the concept of Serverless, and Lambda.\nServerless Serverless is a basic concept that refers to a group of services that are fully managed by AWS. When using these services, you will not need to care about basic daily infrastructure administration tasks such as updating security patches, managing device portfolios, managing assets\u0026hellip;.\nThere are many services planned into the Serverless cluster on AWS such as serverless databases like Aurora Serverless, Redshift Serverless, serverless compute like AWS Lambda.\nAWS Lambda Lambda is a serverless compute service that allows you to run applications without initializing or managing servers. Lambda runs on a highly available infrastructure platform and does all of the compute resource management, including server and operating system maintenance, capacity provisioning, auto-scaling, and logging. . With Lambda, you can develop almost any kind of backend application or service.\nYou organize your application into Lambda functions. Lambda functions run only when needed and are capable of automatically scaling, from a few requests per day to thousands per second. You only pay for the compute time you use — AWS won\u0026rsquo;t charge when your application is not running.\nWe\u0026rsquo;ll also start our Serverless Journey with a Lambda function that first resizes the image after uploading it to the S3 bucket, saves the edited image to a new S3 bucket, and deletes the old image.\n"
+},
+{
+	"uri": "//localhost:1313/2-resize-image-function/2-2-create-s3-bucket/",
+	"title": "Create S3 bucket",
+	"tags": [],
+	"description": "",
+	"content": "In this part, we will create two S3 buckets:\nBucket book-image-stores: to store uploaded image Bucket book-image-resize-stores: to store iamge after resize Open Amazon S3 console, then Click Create bucket General configuration\nChoose Bucket type: General purpose Enter bucket name, book-image-stores Choose ACLs disabled Uncheck access block: Block all public access Check the box: I acknowledge that the current settings might result in this bucket and the objects within becoming public Click Create bucket To create bucket - book-image-resize-stores, repeat steps 1 to 5.\nAfter creating the two buckets, we add the trigger for the lambda function created earlier\nClick Add Trigger Enter S3 and select S3 service Select bucket that trigger lambda, book-image-stores\nSelect All objectcreate events for Event type Check the box - I acknowledge that using\u0026hellip;. as shown below Click Add Check result after add trigger for Lambda function "
+},
+{
+	"uri": "//localhost:1313/2-resize-image-function/",
+	"title": "Resize image",
+	"tags": [],
+	"description": "",
+	"content": "In this section we will create a Lambda Nodejs function to resize the image after uploading the image to the S3 bucket, save the edited image to a new S3 bucket, and delete the old image.\nContent Create Lambda function Create S3 bucket Create policy to access S3 Test Lambda function operation "
+},
+{
+	"uri": "//localhost:1313/3-write-data-to-dynaomodb/3-2-write-data-by-lambda/",
+	"title": "Write data by Lambda function",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we create Lambda function to write data to created DynamoDB table.\nOpen AWS Lambda console, then Click Create function Enter function name: book_create\nSelect Python 3.9 for Runtime Click Create function Copy the below code into tab lambda_function\nimport boto3\rimport json\rclient = boto3.resource(\u0026#39;dynamodb\u0026#39;)\rdef lambda_handler(event, context):\rbook_item = event[\u0026#34;body\u0026#34;]\rerror = None\rtry:\rtable = client.Table(\u0026#39;Books\u0026#39;)\rtable.put_item(Item = book_item)\rexcept Exception as e:\rerror = e\rif error is None:\rresponse = {\r\u0026#39;statusCode\u0026#39;: 200,\r\u0026#39;body\u0026#39;: \u0026#39;writing to dynamoDB successfully!\u0026#39;,\r\u0026#39;headers\u0026#39;: {\r\u0026#39;Content-Type\u0026#39;: \u0026#39;application/json\u0026#39;\r},\r}\relse:\rresponse = {\r\u0026#39;statusCode\u0026#39;: 400,\r\u0026#39;body\u0026#39;: \u0026#39;writing to dynamoDB fail!\u0026#39;,\r\u0026#39;headers\u0026#39;: {\r\u0026#39;Content-Type\u0026#39;: \u0026#39;application/json\u0026#39;\r},\r}\rreturn response Click Deploy Next, add additional permissions for Lambda access to DynamoDB\nClick to tab Configure\nClick Permissions on the left menu\nClick to role the function executing Click Attach permissions\nSelect Attach policies Enter dynamoDB to search policy.\nCheck to policy: AmazonDynamoDBFullAccess\nClick Add permision Create a event to test function operation\nClick to tab Test Enter event name, such as: test_1 Enter the below data into Event JSON {\r\u0026#34;body\u0026#34;: {\r\u0026#34;id\u0026#34;: \u0026#34;1\u0026#34;,\r\u0026#34;name\u0026#34;: \u0026#34;Java\u0026#34;,\r\u0026#34;author\u0026#34;: \u0026#34;Alex\u0026#34;,\r\u0026#34;category\u0026#34;: \u0026#34;IT\u0026#34;,\r\u0026#34;price\u0026#34;: \u0026#34;10.89\u0026#34;,\r\u0026#34;description\u0026#34;: \u0026#34;This book guide to create Java web basic\u0026#34;,\r\u0026#34;image\u0026#34;: \u0026#34;https://book-image-resize-store.s3.us-east-1.amazonaws.com/Java.jpg\u0026#34;\r}\r} Click Save Click Test Navigate to DynamoDB Tables console\nChoose Books Tables Then click Actions then Update settings Click Explore table items You will get all the data from the table. "
+},
+{
+	"uri": "//localhost:1313/2-resize-image-function/2-3-create-policy-access-s3/",
+	"title": "Create Policy for Lambda function",
+	"tags": [],
+	"description": "",
+	"content": "In this part, we will create a Policy that grants the Lambda function permission to get, write, and delete objects in the S3 bucket.\nNavigate to console of created in step 1 Lambda function.\nIn tab Configuration, click Permissions Click on the role being executed by the function Click Add permissions\nSelect Attach policies Click Create policy Click Choose a service and Enter S3, then select S3 Click Action, expand Read in Access level\nCheck to GetObject permission Then, expand Write\nCheck to DeleteObject permission In Resource, click Add ARN to specify resources. Enter bucket name: book-image-shop\nCheck to Any to allow permissions for all objects in the bucket Click Add Click Add additional permissions\nRepeat steps 4 and 5 and\nThen, expand Write, check to PutObject permission click Add ARN to specify resources. Repeat steps 8 and 9 with bucket name is book-image-resize-shop Click Next, Enter policy name, such as: LambdaResizeImageS3Policy\nReview policy information and click Create policy Back to adding policy for Lambda function screen, enter the name of the policy we just created.\nCheck to the policy: LambdaResizeImageS3Policy Click Attach policies We have finished granting the Lambda function read, write, and delete permissions from the S3 bucket. The next step is to test the Lambda function working when uploading an image.\n"
+},
+{
+	"uri": "//localhost:1313/3-write-data-to-dynaomodb/",
+	"title": "Write data to DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "In this section, we will create a DynamoDB Table, then create a Lambda function by Python to write data to it.\nNội dung Create DynamoDB table Write data by Lambda function "
+},
+{
+	"uri": "//localhost:1313/4-cleanup/",
+	"title": "Clean up",
+	"tags": [],
+	"description": "",
+	"content": " Delete DynamoDB table Open DynamoDB console Select Tables on the left menu Select Books table Click Delete Enter delete and click Delete table Delete S3 bucket Open S3 console Select book-image-resize-store bucket Click Empty Enter permanently delete and click Empty Select book-image-resize-store bucket Click Delete Enter book-image-resize-store and click Delete Select book-image-store bucket Click Delete Enter book-image-store and click Delete Delete Lambda function Open AWS Lambda console Select book_create function Click Actions Select Delete Enter delete and click Delete Similar to resize_image function If you continue with workshop 2 of the series, you can skip the step of deleting the Lambda function.\n"
+},
+{
+	"uri": "//localhost:1313/2-resize-image-function/2-4-test-lambda-function/",
+	"title": "Test Lambda function operation",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to S3 bucket: book-image-stores\nClick Upload Click Add files Select image to upload, then click Upload Wait for the Lambda function running, then check whether the image has been deleted Navigate to S3 bucket: book-image-resize-stores\nClick to image file Click Object URL to download image But error occurs - Access Denied. To download image, need add policy for bucket to allow public access.\nBack to bucket, select Permission Click Edit in Bucket policy Copy the below json data into Policy {\r\u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;,\r\u0026#34;Statement\u0026#34;: [\r{\r\u0026#34;Sid\u0026#34;: \u0026#34;PublicReadGetObject\u0026#34;,\r\u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;,\r\u0026#34;Principal\u0026#34;: \u0026#34;*\u0026#34;,\r\u0026#34;Action\u0026#34;: \u0026#34;s3:GetObject\u0026#34;,\r\u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::book-image-resize-stores/*\u0026#34;\r}\r]\r} Click Save changes Then, repeat steps 6 and 7 to download image to local to download an image to your device to compare it with the one you\u0026rsquo;ve already uploaded. So Lambda resizes function is working properly.\n"
+},
+{
+	"uri": "//localhost:1313/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
