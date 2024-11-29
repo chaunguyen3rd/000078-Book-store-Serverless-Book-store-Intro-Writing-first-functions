@@ -29,9 +29,9 @@ pre : " <b> 2.1 </b> "
 ![CreateFunction](/images/temp/1/4.png?width=90pc)
 
 6. At **resize-image** page.
-    - Click **Configuration** tab
-    - Click **Environment variables** on the left menu
-    - Click **Edit**
+    - Click **Configuration** tab.
+    - Click **Environment variables** on the left menu.
+    - Click **Edit**.
 ![CreateFunction](/images/temp/1/5.png?width=90pc)
 
 7. At **Edit environment variables** page.
