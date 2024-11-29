@@ -6,6 +6,7 @@ chapter : false
 pre : " <b> 2.3 </b> "
 ---
 In this part, we will create a Policy that grants the Lambda function permission to get, write, and delete objects in the S3 bucket.
+
 1. At **resize-image** page.
     - Click tab **Configuration**.
     - Click **Permissions**.

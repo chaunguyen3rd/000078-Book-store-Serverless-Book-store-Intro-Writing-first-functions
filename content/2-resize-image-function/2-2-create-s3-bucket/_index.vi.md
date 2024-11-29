@@ -42,9 +42,3 @@ Phần này, chúng ta sẽ tạo hai S3 bucket:
 
 10. Xem kết quả sau khi thêm trigger cho Lambda function.
 ![S3Console](/images/temp/1/15.png?featherlight=false&width=90pc)
-
-
-
-
-
-
