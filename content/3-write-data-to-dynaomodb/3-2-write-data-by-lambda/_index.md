@@ -8,7 +8,7 @@ pre : " <b> 3.2 </b> "
 In this step, we create Lambda function to write data to created DynamoDB table.
 
 1. Open [AWS Lambda console](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/discover). 
-    - Click **Functions**. 
+    - Click **Functions**.
     - Click **Create function**.
 ![LambdaConsole](/images/temp/1/39.png?width=90pc)
 
@@ -74,9 +74,9 @@ In this step, we create Lambda function to write data to created DynamoDB table.
   ![LambdaConsole](/images/temp/1/44.png?width=90pc)
 
 5. Create an event to test the function operation. At **book_create** page.
-    - Click to tab **Test**
-    - Enter event name, such as: **test_1**
-    - Enter the below data into **Event JSON**
+    - Click to tab **Test**.
+    - Enter event name, such as: **test_1**.
+    - Enter the below data into **Event JSON**.
         ```
         {
           "body": {
@@ -90,8 +90,8 @@ In this step, we create Lambda function to write data to created DynamoDB table.
           }
         }
         ```
-    - Click **Save**
-    - Click **Test**
+    - Click **Save**.
+    - Click **Test**.
 ![LambdaConsole](/images/temp/1/45.png?width=90pc)
 
 6. Navigate to **DynamoDB Tables** console.
