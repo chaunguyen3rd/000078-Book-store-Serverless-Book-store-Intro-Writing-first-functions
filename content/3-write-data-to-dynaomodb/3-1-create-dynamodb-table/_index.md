@@ -5,7 +5,7 @@ weight : 1
 chapter : false
 pre : " <b> 3.1 </b> "
 ---
-1. Open [DynamoDB console](https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=us-east-1#dashboard), then Click **Create table** 
+1. Open [DynamoDB console](https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=us-east-1#dashboard), then Click **Create table**.
 ![DynamoDBConsole](/images/temp/1/35.png?width=90pc)
 
 2. Enter table name: **Books**.
