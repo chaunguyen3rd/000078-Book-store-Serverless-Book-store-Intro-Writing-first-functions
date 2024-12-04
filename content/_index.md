@@ -12,7 +12,7 @@ This is a series about Serverless. AWS provides technologies for running code, m
 
 Example of a web application using the Serverless model with the cloud:
 
-![SeverlessExample](/images/Arch-Diagrams_Serverless-Category-Page_WebApp.png?featherlight=false&width=90pc)
+![ServerlessExample](/000078-Book-store-Serverless-Book-store-Intro-Writing-first-functions/images/Arch-Diagrams_Serverless-Category-Page_WebApp.png?featherlight=false&width=90pc)
 
 In the first post of this series, we'll learn the basics of Serverless and practice creating functions with Lambda that are triggered from S3 and write data to a DynamoDB table.
 #### Content
