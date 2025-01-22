@@ -8,10 +8,10 @@ chapter : false
 
 ### Tổng quan
 
-Đây là series về Serverless với AWS Cloud. AWS cung cấp các công nghệ để chạy code, quản lý dữ liệu, và tích hợp các ứng dụng mà không cần quản lý máy chủ. Các công nghệ đó phục vụ cho người dùng tạo các ứng dụng theo mô hình Serverless. Các ứng dụng Serverless bắt đầu với AWS Lambda, lưu dữ liệu với DynamoDB, nhận yêu cầu của người dùng với API Gateway, host static web với S3/AWS Amplify Console,....
+Đây là series về Serverless với AWS Cloud. AWS cung cấp các công nghệ để chạy code, quản lý dữ liệu, và tích hợp các ứng dụng mà không cần quản lý máy chủ. Các công nghệ đó phục vụ cho người dùng tạo các ứng dụng theo mô hình Serverless. Các ứng dụng Serverless bắt đầu với AWS Lambda, lưu dữ liệu với DynamoDB, nhận yêu cầu của người dùng với API Gateway, host static web với S3/AWS Amplify Console, ...
 
 Ví dụ về ứng dụng web sử dụng mô hình Serverless với cloud:
-![ServerlessExample](/000078-Book-store-Serverless-Book-store-Intro-Writing-first-functions/images/Arch-Diagrams_Serverless-Category-Page_WebApp.png?featherlight=false&width=90pc)
+![ServerlessExample](/images/Arch-Diagrams_Serverless-Category-Page_WebApp.png?featherlight=false&width=90pc)
 
 Trong bài đầu tiên của series này, chúng ta sẽ tìm hiểu các khái niệm cơ bản về Serverless và thực hành tạo các function với Lambda được trigger từ S3 và ghi dữ liệu vào bảng DynamoDB. 
 ### Nội dung
